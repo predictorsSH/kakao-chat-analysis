@@ -1,12 +1,11 @@
-템플릿 제작
-
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>Title</title>-->
-<!--</head>-->
-<!--<body>-->
-
-<!--</body>-->
-<!--</html>-->
+{% load static %}
+{% load bootstrap4 %}
+{% block content %}
+<div class="container">
+    <form method="POST" action="{% url 'fileupload' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% bootstrap_form fileuploadForm %}
+        <input type="submit" class="btn btn-primary col-12" value="제출">
+    </form>
+</div>
+{% endblock%}
