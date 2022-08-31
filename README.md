@@ -6,6 +6,7 @@
 
 ## 개요
 |dataset|language|framework|
+|카카오채팅데이터|python|django|
 |-|-|-|
 
 ## 프로젝트 목표
@@ -38,3 +39,8 @@ step3. 웹 서비스 개발
 - python 장고를 활용한 개발
 
 ## 일정
+|일자|작업|비고|
+|22.08.27 ~ 22.08.31 |파일 업로드 기능 구현|-|
+|22.08.31 ~  |data preprocessing|-|
+
+
