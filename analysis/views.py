@@ -7,12 +7,12 @@ from . import forms
 def fileUpload(request):
     if request.method == "POST":
         # Fetching the form data
-        title = request.POST["title"]
+        # title = request.POST["title"]
         attached = request.FILES["attached"]
 
         # Saving the information in the database
         fileupload = models.FileUpload(
-            title=title,
+            # title=title,
             attached=attached
         )
         fileupload.save()

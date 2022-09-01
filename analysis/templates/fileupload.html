@@ -1,6 +1,7 @@
 {% load static %}
 {% load bootstrap4 %}
 {% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
 <div class="container">
     <form method="POST" action="{% url 'fileupload' %}" enctype="multipart/form-data">
         {% csrf_token %}
