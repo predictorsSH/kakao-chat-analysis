@@ -2,10 +2,6 @@
 from konlpy.tag import Okt
 from read_data import data_read
 
-import os
-# os.environ['JAVA_HOME'] = r'C:\Program Files\Java\jdk-16.0.2'
-
-
 def _tokenizer(message: str):
     okt = Okt()
     morpheme = okt.pos(message)
