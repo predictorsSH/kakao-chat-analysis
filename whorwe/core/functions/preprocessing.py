@@ -1,16 +1,26 @@
 
 from konlpy.tag import Okt
-import pandas as pd
+from read_data import data_read
+
+import os
+# os.environ['JAVA_HOME'] = r'C:\Program Files\Java\jdk-16.0.2'
 
 
-def _tokenizer(data:pd.DataFrame):
+def _tokenizer(message: str):
     okt = Okt()
-    data['new_content']= okt.pos(data['content'])
+    morpheme = okt.pos(message)
+    return morpheme
 
+def make_morpheme(data):
+    data['morpheme'] = data['Message'].apply(_tokenizer)
     return data
-
 
 def remove_stopword(x):
     print('')
+
+if __name__ == '__main__':
+    FILE_PATH = '../../../media/uploads/KakaoTalk_Chat.csv'
+    chat_data = data_read(FILE_PATH)
+    chat_data = make_morpheme(chat_data)
 
 
