@@ -25,4 +25,4 @@ def fileUpload(request):
             'fileuploadForm' : fileuploadForm
         }
 
-    return render(request, "fileupload.html", context)
+    return render(request, "analysis/fileupload.html", context)

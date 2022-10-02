@@ -18,5 +18,6 @@ if __name__ == '__main__':
     FILE_PATH = '../../../media/uploads/KakaoTalk_Chat.csv'
     chat_data = data_read(FILE_PATH)
     chat_data = make_morpheme(chat_data)
+    
 
 
