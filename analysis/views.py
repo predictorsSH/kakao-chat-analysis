@@ -19,10 +19,11 @@ def fileUpload(request):
 
         return redirect('fileupload')
 
-    else :
+    else:
+
         fileuploadForm = forms.FileUploadForm
         context = {
-            'fileuploadForm' : fileuploadForm
+            'fileuploadForm': fileuploadForm
         }
 
     return render(request, "analysis/fileupload.html", context)
