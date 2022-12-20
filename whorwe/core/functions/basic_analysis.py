@@ -1,4 +1,4 @@
-from read_data import data_read
+from whorwe.core.functions.read_data import data_read
 import pandas as pd
 
 

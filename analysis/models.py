@@ -7,3 +7,7 @@ class FileUpload(models.Model):
 
     # def __str__(self):
     #     return self.title
+
+class Basic_stats(models.Model):
+    name = models.CharField(max_length=30)
+    count = models.IntegerField()

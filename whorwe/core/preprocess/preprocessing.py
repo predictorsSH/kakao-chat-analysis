@@ -1,7 +1,7 @@
 
 from konlpy.tag import Okt
-from read_data import data_read
-from basic_analysis import words_counts, active_time
+from whorwe.core.functions.read_data import data_read
+from whorwe.core.functions.basic_analysis import words_counts, active_time
 
 def _tokenizer(message: str):
     okt = Okt()

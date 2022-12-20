@@ -1,6 +1,6 @@
-from preprocessing import make_morpheme
-from read_data import data_read
-from basic_analysis import words_counts, active_time, user_counts, user
+from whorwe.core.preprocess.preprocessing import make_morpheme
+from whorwe.core.functions.read_data import data_read
+from whorwe.core.functions.basic_analysis import words_counts, active_time, user_counts, user
 
 
 class DataProcess():
@@ -23,7 +23,8 @@ class DataProcess():
             words_counts_lst.append(w_counts[:10]) #순위 높은 단어 10개만 우선
         act_time = active_time(analysis_data) #??
 
-        return u_count, words_counts_lst, act_time
+        return u_count
+        #return u_count, words_counts_lst, act_time
 
 
 
@@ -31,4 +32,7 @@ if __name__=='__main__':
 
     FILE_PATH = '../../media/uploads/KakaoTalk_Chat.csv'
     DP = DataProcess(FILE_PATH)
-    u_count, words_counts, active_time = DP.basic_analysis()
+    #u_count, words_counts, active_time = DP.basic_analysis()
+    u_count = DP.basic_analysis()
+    for i in u_count.items():
+        print(i)
