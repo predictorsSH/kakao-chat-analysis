@@ -21,7 +21,6 @@ def words_counts(user, data):
     print('counting words by ', user, '...')
     for d in data:
         for word in d:
-            print(word)
             counts[word] = counts.get(word, 0) + 1
 
     return sorted(counts.items(), key=lambda x: x[1], reverse=True)

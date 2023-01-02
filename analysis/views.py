@@ -21,7 +21,7 @@ def fileUpload(request):
         dp = DataProcess(fileupload.attached.path)
         u_count = dp.basic_analysis()
 
-        for n,c in u_count.items():
+        for n, c in u_count.items():
             basic_analysis = Basic_stats(
                 name=n,
                 count=c
