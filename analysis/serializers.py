@@ -1,10 +1,10 @@
 from rest_framework import serializers
-from .models import FileUpload
+from .models import Basic_stats
 
 
-class FileSerializer(serializers.ModelSerializer):
+class BasicStatSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = FileUpload
-        fields = ('attached')
+        model = Basic_stats
+        fields = ('count')
 

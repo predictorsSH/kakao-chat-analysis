@@ -31,11 +31,11 @@ class DataProcess():
                 if len(word_list) >= 10:
                     break
 
-            u_words_counts.append({u : word_list})
+            u_words_counts.append({u: word_list})
 
         #act_time = active_time(analysis_data) #??
 
-        return u_count, u_words_counts
+        return u_count
 
 
 
@@ -45,4 +45,3 @@ if __name__=='__main__':
     DP = DataProcess(FILE_PATH)
     #u_count, words_counts, active_time = DP.basic_analysis()
     u_count, u_words_counts = DP.basic_analysis()
-    u_count
