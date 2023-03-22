@@ -30,7 +30,10 @@ def active_time(data, user=None):
     if user == None:
         data['Date'] = pd.to_datetime(data['Date'])
         data['hour'] = data['Date'].dt.hour
-        return data[['hour', 'Message', 'User']].groupby(by=['User', 'hour']).count()
+        result = data[['hour', 'Message']].groupby(by=['hour']).count()
+        result = result.reset_index()
+        result.sort_values('Message',ascending=False,inplace=True)
+        return result.iloc[0]['hour']
 
     else:
         data['Date'] = pd.to_datetime(data['Date'])
@@ -42,3 +45,4 @@ if __name__ == '__main__':
     FILE_PATH = '../../../media/uploads/KakaoTalk_Chat_LhVd00Y_C4XecUs.csv'
     chat_data = data_read(FILE_PATH)
     u_counts = user_counts(chat_data)
+    ac_time = active_time(chat_data)

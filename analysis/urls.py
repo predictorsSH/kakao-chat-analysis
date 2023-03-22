@@ -3,6 +3,6 @@ from . import views
 
 
 urlpatterns = [
-    path('', views.fileUpload, name="fileupload",),
-    path('basicstats/', views.BasicStatView.as_view())
+    path('', views.fileUploadView, name="fileupload",),
+    path('basicstats/<int:id>/', views.BasicStatView.as_view())
 ]

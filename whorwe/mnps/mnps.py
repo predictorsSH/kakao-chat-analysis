@@ -33,9 +33,9 @@ class DataProcess():
 
             u_words_counts.append({u: word_list})
 
-        #act_time = active_time(analysis_data) #??
+        act_time = active_time(analysis_data)
 
-        return u_count
+        return u_count, act_time
 
 
 

@@ -11,6 +11,7 @@ class FileUpload(models.Model):
 
 class Basic_stats(models.Model):
 
-    # name = models.CharField(max_length=30)
-    # count = models.IntegerField()
-    count = models.TextField()
+    count = models.TextField() #유저별 채팅 횟수
+    active_time = models.IntegerField(default=3) #대화가 가장 활발한 시간
+    # active_time : 대화가 가장 활발한 시간
+
