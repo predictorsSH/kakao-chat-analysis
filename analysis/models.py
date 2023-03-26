@@ -11,7 +11,7 @@ class FileUpload(models.Model):
 
 class Basic_stats(models.Model):
 
-    count = models.TextField() #유저별 채팅 횟수
+    user_count = models.TextField() #유저별 채팅 횟수
     active_time = models.IntegerField(default=3) #대화가 가장 활발한 시간
-    # active_time : 대화가 가장 활발한 시간
+    user_words_count = models.TextField(null=True) # 유저별 많이 사용한 단어 5개 # null=True 면 안됨.
 

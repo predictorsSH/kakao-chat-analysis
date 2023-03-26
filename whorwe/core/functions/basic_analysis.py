@@ -45,4 +45,5 @@ if __name__ == '__main__':
     FILE_PATH = '../../../media/uploads/KakaoTalk_Chat_LhVd00Y_C4XecUs.csv'
     chat_data = data_read(FILE_PATH)
     u_counts = user_counts(chat_data)
-    ac_time = active_time(chat_data)
+    act_time = active_time(chat_data)
+

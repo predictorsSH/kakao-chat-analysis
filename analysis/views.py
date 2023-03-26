@@ -24,7 +24,7 @@ def fileUploadView(request):
         # 데이터 전처리
         dp = DataProcess(fileupload.attached.path)
         # user(채팅 참가자)별로 말한 횟수 카운트
-        u_count, act_time = dp.basic_analysis()
+        u_count, act_time, u_words_count = dp.basic_analysis()
         #user별 count dictionary 생성
         u_count_data = {}
         for n, c in u_count.items():
@@ -32,8 +32,9 @@ def fileUploadView(request):
 
         #Basic_stats에 count 입력하고 저장.
         basic_stats = Basic_stats(
-            count=json.dumps(u_count_data, ensure_ascii=False),
-            active_time=act_time
+            user_count=json.dumps(u_count_data, ensure_ascii=False),
+            active_time=act_time,
+            user_words_count = json.dumps(u_words_count, ensure_ascii=False)
         )
         basic_stats.save()
 

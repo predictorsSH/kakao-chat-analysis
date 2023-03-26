@@ -6,5 +6,5 @@ class BasicStatSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Basic_stats
-        fields = ('count', 'active_time')
+        fields = ('user_count', 'active_time', 'user_words_count')
 
