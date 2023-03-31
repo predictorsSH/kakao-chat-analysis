@@ -30,10 +30,10 @@ class DataProcess():
 
             for w in w_counts:
 
-                if ('ㅋ' not in (w[0])) and ('\n' != w[0]) & (len(w[0]) >= 2) \
-                        & ('ㅇㅇ' not in (w[0])) & ('사진' != (w[0])):
+                if ('ㅋ' not in (w[0])) and ('\n' != w[0]) & (len(w[0]) >= 3) \
+                        & ('ㅇㅇ' not in (w[0])) & ('사진' != (w[0])) & ('이모티콘' != (w[0])):
                     word_list.append(w) #순위 높은 단어 5개만 우선
-                if len(word_list) >= 5:
+                if len(word_list) >= 10:
                     break
 
             u_words_counts.append({u: word_list})
