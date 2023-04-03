@@ -15,8 +15,8 @@ class DataProcess():
     def basic_analysis(self):
 
         analysis_data = self.preprocess()
-        u_count = user_counts(analysis_data)  #등장 횟수 카운트
-        act_time = active_time(analysis_data) #대화가 가장 활발한 시간
+        u_count = user_counts(analysis_data)  # 등장 횟수 카운트
+        act_time = active_time(analysis_data)  # 대화가 가장 활발한 시간
         w_counts = self.all_user_word(analysis_data)
 
         return u_count, act_time, w_counts
@@ -26,7 +26,6 @@ class DataProcess():
         for u in self.users:
             word_list = []
             w_counts = words_counts(u, data)
-
 
             for w in w_counts:
 
@@ -38,6 +37,8 @@ class DataProcess():
 
             u_words_counts.append({u: word_list})
         return u_words_counts
+
+
 
 
 if __name__=='__main__':

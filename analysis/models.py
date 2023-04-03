@@ -15,3 +15,5 @@ class Basic_stats(models.Model):
     active_time = models.IntegerField(default=3) #대화가 가장 활발한 시간
     user_words_count = models.TextField(null=True) # 유저별 많이 사용한 단어 5개 # null=True 면 안됨.
 
+class Advanced_analyis(models.Model):
+    test = models.TextField() #개발 미정

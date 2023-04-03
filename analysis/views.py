@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
-from .models import FileUpload, Basic_stats
+from .models import FileUpload, Basic_stats, Advanced_analyis
 from . import forms
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import BasicStatSerializer
+from .serializers import BasicStatSerializer, AdvancedAnalysisSerializer
 from rest_framework.generics import get_object_or_404
 # mnps
 from whorwe.mnps.mnps import DataProcess
@@ -34,9 +34,14 @@ def fileUploadView(request):
         basic_stats = Basic_stats(
             user_count=json.dumps(u_count_data, ensure_ascii=False),
             active_time=act_time,
-            user_words_count = json.dumps(u_words_count, ensure_ascii=False)
+            user_words_count=json.dumps(u_words_count, ensure_ascii=False)
         )
         basic_stats.save()
+
+        advanced_analysis = Advanced_analyis(
+            test='테스트 개발'
+        )
+        advanced_analysis.save()
 
         return redirect('fileupload')
 
@@ -47,10 +52,17 @@ def fileUploadView(request):
             'fileuploadForm': fileuploadForm
         }
 
+
     return render(request, "analysis/fileupload.html", context)
 
 class BasicStatView(APIView):
     def get(self, request, id):
         basic_stats = get_object_or_404(Basic_stats, id=id)
         serializer = BasicStatSerializer(basic_stats)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+class AdvancedAnalysisView(APIView):
+    def get(self, request, id):
+        advanced_analysis = get_object_or_404(Advanced_analyis, id=id)
+        serializer = AdvancedAnalysisSerializer(advanced_analysis)
         return Response(serializer.data, status=status.HTTP_200_OK)
