@@ -10,50 +10,53 @@ from rest_framework.generics import get_object_or_404
 from whorwe.mnps.mnps import DataProcess
 import json
 
+from django.http import HttpResponse
 
 def fileUploadView(request):
 
+
     if request.method == "POST":
 
-        attached = request.FILES["attached"]
+        attached = request.FILES
         fileupload = FileUpload(
             attached=attached
         )
         fileupload.save()
 
         # 데이터 전처리
-        dp = DataProcess(fileupload.attached.path)
-        # user(채팅 참가자)별로 말한 횟수 카운트
-        u_count, act_time, u_words_count = dp.basic_analysis()
-        #user별 count dictionary 생성
-        u_count_data = {}
-        for n, c in u_count.items():
-            u_count_data[n] = c
+    #     dp = DataProcess(fileupload.attached.path)
+    #     # user(채팅 참가자)별로 말한 횟수 카운트
+    #     u_count, act_time, u_words_count = dp.basic_analysis()
+    #     #user별 count dictionary 생성
+    #     u_count_data = {}
+    #     for n, c in u_count.items():
+    #         u_count_data[n] = c
+    #
+    #     #Basic_stats에 count 입력하고 저장.
+    #     basic_stats = Basic_stats(
+    #         user_count=json.dumps(u_count_data, ensure_ascii=False),
+    #         active_time=act_time,
+    #         user_words_count=json.dumps(u_words_count, ensure_ascii=False)
+    #     )
+    #     basic_stats.save()
+    #
+    #     advanced_analysis = Advanced_analyis(
+    #         test='테스트 개발'
+    #     )
+    #     advanced_analysis.save()
+    #
+    #     return redirect('fileupload')
+    #
+    # else:
+    #
+    #     fileuploadForm = forms.FileUploadForm
+    #     context = {
+    #         'fileuploadForm': fileuploadForm
+    #     }
 
-        #Basic_stats에 count 입력하고 저장.
-        basic_stats = Basic_stats(
-            user_count=json.dumps(u_count_data, ensure_ascii=False),
-            active_time=act_time,
-            user_words_count=json.dumps(u_words_count, ensure_ascii=False)
-        )
-        basic_stats.save()
 
-        advanced_analysis = Advanced_analyis(
-            test='테스트 개발'
-        )
-        advanced_analysis.save()
-
-        return redirect('fileupload')
-
-    else:
-
-        fileuploadForm = forms.FileUploadForm
-        context = {
-            'fileuploadForm': fileuploadForm
-        }
-
-
-    return render(request, "analysis/fileupload.html", context)
+    # return render(request, "analysis/fileupload.html", context)
+    return HttpResponse(json.dumps({"status":"Success"}))
 
 class BasicStatView(APIView):
     def get(self, request, id):
