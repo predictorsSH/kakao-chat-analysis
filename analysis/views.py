@@ -19,7 +19,6 @@ import io
 @method_decorator(csrf_exempt, name="dispatch")
 def fileUploadView(request):
 
-
     if request.method == "POST":
 
         attached = request.FILES['file']
