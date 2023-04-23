@@ -29,32 +29,33 @@ def fileUploadView(request):
         # data = list()
         # for line in csv.reader(io_string, delimiter=','):
         #     print(line)
+
         fileupload = FileUpload(
             attached=attached
         )
         fileupload.save()
 
         #데이터 전처리
-        dp = DataProcess(fileupload.attached.path)
-        # user(채팅 참가자)별로 말한 횟수 카운트
-        u_count, act_time, u_words_count = dp.basic_analysis()
-        #user별 count dictionary 생성
-        u_count_data = {}
-        for n, c in u_count.items():
-            u_count_data[n] = c
-
-        #Basic_stats에 count 입력하고 저장.
-        basic_stats = Basic_stats(
-            user_count=json.dumps(u_count_data, ensure_ascii=False),
-            active_time=act_time,
-            user_words_count=json.dumps(u_words_count, ensure_ascii=False)
-        )
-        basic_stats.save()
-
-        advanced_analysis = Advanced_analyis(
-            test='테스트 개발'
-        )
-        advanced_analysis.save()
+        # dp = DataProcess(fileupload.attached.path)
+        # # user(채팅 참가자)별로 말한 횟수 카운트
+        # u_count, act_time, u_words_count = dp.basic_analysis()
+        # #user별 count dictionary 생성
+        # u_count_data = {}
+        # for n, c in u_count.items():
+        #     u_count_data[n] = c
+        #
+        # #Basic_stats에 count 입력하고 저장.
+        # basic_stats = Basic_stats(
+        #     user_count=json.dumps(u_count_data, ensure_ascii=False),
+        #     active_time=act_time,
+        #     user_words_count=json.dumps(u_words_count, ensure_ascii=False)
+        # )
+        # basic_stats.save()
+        #
+        # advanced_analysis = Advanced_analyis(
+        #     test='테스트 개발'
+        # )
+        # advanced_analysis.save()
 
         return redirect('fileupload')
     else:
@@ -66,10 +67,33 @@ def fileUploadView(request):
 
 
 class BasicStatView(APIView):
-    def get(self, request, id):
-        basic_stats = get_object_or_404(Basic_stats, id=id)
+    def get(self, request, f_id):
+        basic_stats = get_object_or_404(Basic_stats, id=f_id)
         serializer = BasicStatSerializer(basic_stats)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request, f_id):
+
+        file = FileUpload.objects.get(f_id=f_id)
+        dp = DataProcess(file.attached.path)
+        # user(채팅 참가자)별로 말한 횟수 카운트
+        u_count, act_time, u_words_count = dp.basic_analysis()
+        #user별 count dictionary 생성
+        u_count_data = {}
+        for n, c in u_count.items():
+            u_count_data[n] = c
+
+        #Basic_stats에 count 입력하고 저장.
+        basic_stats = Basic_stats(
+            f_id=file,
+            user_count=json.dumps(u_count_data, ensure_ascii=False),
+            active_time=act_time,
+            user_words_count=json.dumps(u_words_count, ensure_ascii=False)
+        )
+        basic_stats.save()
+
+        return Response(status=status.HTTP_201_CREATED)
+
 
 class AdvancedAnalysisView(APIView):
     def get(self, request, id):
