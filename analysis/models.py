@@ -11,7 +11,6 @@ class FileUpload(models.Model):
 class Basic_stats(models.Model):
 
     f_id = models.ForeignKey("FileUpload",
-                             related_name="File",
                              on_delete=models.CASCADE,
                              db_column='f_id',
                              )

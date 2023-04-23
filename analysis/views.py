@@ -4,8 +4,9 @@ from . import forms
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import BasicStatSerializer, AdvancedAnalysisSerializer
+from .serializers import BasicStatSerializer, AdvancedAnalysisSerializer, UserCountSerializer, FileIDSerializer
 from rest_framework.generics import get_object_or_404
+from rest_framework.decorators import api_view
 # mnps
 from whorwe.mnps.mnps import DataProcess
 import json
@@ -17,6 +18,7 @@ import csv
 import io
 
 @method_decorator(csrf_exempt, name="dispatch")
+@api_view(('GET', 'POST'))
 def fileUploadView(request):
 
     if request.method == "POST":
@@ -34,6 +36,7 @@ def fileUploadView(request):
             attached=attached
         )
         fileupload.save()
+        serializer = FileIDSerializer(fileupload)
 
         #데이터 전처리
         # dp = DataProcess(fileupload.attached.path)
@@ -57,7 +60,7 @@ def fileUploadView(request):
         # )
         # advanced_analysis.save()
 
-        return redirect('fileupload')
+        return Response(serializer.data, status=status.HTTP_200_OK)
     else:
         fileuploadForm = forms.FileUploadForm
         context = {
@@ -99,4 +102,10 @@ class AdvancedAnalysisView(APIView):
     def get(self, request, id):
         advanced_analysis = get_object_or_404(Advanced_analyis, id=id)
         serializer = AdvancedAnalysisSerializer(advanced_analysis)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+class UserCountView(APIView):
+    def get(self, request, f_id):
+        basic_stats = get_object_or_404(Basic_stats, f_id=f_id)
+        serializer = UserCountSerializer(basic_stats)
         return Response(serializer.data, status=status.HTTP_200_OK)
