@@ -42,8 +42,9 @@ def active_time(data, user=None):
 
 
 if __name__ == '__main__':
-    FILE_PATH = '../../../media/uploads/KakaoTalk_Chat_LhVd00Y_C4XecUs.csv'
+    FILE_PATH = '../../../media/uploads/KakaoTalk_Chat.csv'
     chat_data = data_read(FILE_PATH)
     u_counts = user_counts(chat_data)
     act_time = active_time(chat_data)
+    u_counts
 
