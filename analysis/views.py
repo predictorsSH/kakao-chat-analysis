@@ -4,7 +4,7 @@ from . import forms
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import BasicStatSerializer, AdvancedAnalysisSerializer, UserCountSerializer, FileIDSerializer
+from .serializers import BasicStatSerializer, AdvancedAnalysisSerializer, UserCountSerializer, FileIDSerializer, ActiveTimeSerializer
 from rest_framework.generics import get_object_or_404
 from rest_framework.decorators import api_view
 # mnps
@@ -90,7 +90,7 @@ class BasicStatView(APIView):
         basic_stats = Basic_stats(
             f_id=file,
             user_count=json.dumps(u_count_data, ensure_ascii=False),
-            active_time=act_time,
+            active_time=json.dumps(act_time,ensure_ascii=False),
             user_words_count=json.dumps(u_words_count, ensure_ascii=False)
         )
         basic_stats.save()
@@ -108,4 +108,10 @@ class UserCountView(APIView):
     def get(self, request, f_id):
         basic_stats = get_object_or_404(Basic_stats, f_id=f_id)
         serializer = UserCountSerializer(basic_stats)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+class ActiveTimeView(APIView):
+    def get(self, request, f_id):
+        basic_stats = get_object_or_404(Basic_stats, f_id=f_id)
+        serializer = ActiveTimeSerializer(basic_stats)
         return Response(serializer.data, status=status.HTTP_200_OK)

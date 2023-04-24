@@ -20,6 +20,11 @@ class UserCountSerializer(serializers.ModelSerializer):
         model = Basic_stats
         fields = ('user_count',)
 
+class ActiveTimeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Basic_stats
+        fields = ('active_time',)
+
 
 class AdvancedAnalysisSerializer(serializers.ModelSerializer):
 

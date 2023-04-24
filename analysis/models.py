@@ -15,9 +15,9 @@ class Basic_stats(models.Model):
                              db_column='f_id',
                              )
 
-    user_count = models.TextField() #유저별 채팅 횟수
-    active_time = models.IntegerField(default=3) #대화가 가장 활발한 시간
+    user_count = models.TextField(default='') #유저별 채팅 횟수
+    active_time = models.TextField(default='') #대화가 가장 활발한 시간
     user_words_count = models.TextField(null=True) # 유저별 많이 사용한 단어 5개 # null=True 면 안됨.
 
 class Advanced_analyis(models.Model):
-    test = models.TextField() #개발 미정
+    test = models.TextField(default='') #개발 미정
