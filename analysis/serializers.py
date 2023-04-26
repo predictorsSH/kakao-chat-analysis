@@ -25,6 +25,10 @@ class ActiveTimeSerializer(serializers.ModelSerializer):
         model = Basic_stats
         fields = ('active_time',)
 
+class AllUserWordsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Basic_stats
+        fields = ('user_words_count',)
 
 class AdvancedAnalysisSerializer(serializers.ModelSerializer):
 

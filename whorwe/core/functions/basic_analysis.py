@@ -15,15 +15,26 @@ def user_counts(data):
 
 
 def words_counts(user, data):
-    data = data[data['User'] == user]['morpheme']
+    if user == 'ALL':
+        print('all user')
+        data = data['morpheme']
+        counts = {}
+        print('counting words by all users...')
+        for d in data:
+            for word in d:
+                counts[word] = counts.get(word,0) + 1
+        return sorted(counts.items(),  key=lambda x: x[1], reverse=True)
 
-    counts = {}
-    print('counting words by ', user, '...')
-    for d in data:
-        for word in d:
-            counts[word] = counts.get(word, 0) + 1
+    else:
+        data = data[data['User'] == user]['morpheme']
 
-    return sorted(counts.items(), key=lambda x: x[1], reverse=True)
+        counts = {}
+        print('counting words by ', user, '...')
+        for d in data:
+            for word in d:
+                counts[word] = counts.get(word, 0) + 1
+
+        return sorted(counts.items(), key=lambda x: x[1], reverse=True)
 
 
 def active_time(data, user=None):

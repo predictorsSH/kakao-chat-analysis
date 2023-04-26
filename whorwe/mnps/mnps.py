@@ -22,6 +22,18 @@ class DataProcess():
         return u_count, act_time, w_counts
 
     def all_user_word(self, data):
+        all_words_counts = []
+        w_counts = words_counts('ALL',data)
+
+        for w in w_counts:
+            if ('ㅋ' not in (w[0])) and ('\n' != w[0]) & (len(w[0]) >= 3) \
+                    & ('ㅇㅇ' not in (w[0])) & ('사진' != (w[0])) & ('이모티콘' != (w[0])):
+                all_words_counts.append(w) #순위 높은 단어 10개만 우선
+            if len(all_words_counts) >= 3:
+                break
+        return all_words_counts
+
+    def user_word(self, data):
         u_words_counts = []
         for u in self.users:
             word_list = []
@@ -31,7 +43,7 @@ class DataProcess():
 
                 if ('ㅋ' not in (w[0])) and ('\n' != w[0]) & (len(w[0]) >= 3) \
                         & ('ㅇㅇ' not in (w[0])) & ('사진' != (w[0])) & ('이모티콘' != (w[0])):
-                    word_list.append(w) #순위 높은 단어 5개만 우선
+                    word_list.append(w) #순위 높은 단어 10개만 우선
                 if len(word_list) >= 10:
                     break
 
@@ -43,6 +55,6 @@ class DataProcess():
 
 if __name__=='__main__':
 
-    FILE_PATH = '../../media/uploads/KakaoTalk_Chat_LhVd00Y_C4XecUs.csv'
+    FILE_PATH = '../../media/uploads/KakaoTalk_Chat_내사룽_2023-03-31-19-14-34.csv'
     DP = DataProcess(FILE_PATH)
     u_count, act_time, u_words_counts = DP.basic_analysis()

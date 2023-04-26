@@ -4,7 +4,7 @@ from . import forms
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import BasicStatSerializer, AdvancedAnalysisSerializer, UserCountSerializer, FileIDSerializer, ActiveTimeSerializer
+from .serializers import BasicStatSerializer, AdvancedAnalysisSerializer, UserCountSerializer, FileIDSerializer, ActiveTimeSerializer, AllUserWordsSerializer
 from rest_framework.generics import get_object_or_404
 from rest_framework.decorators import api_view
 # mnps
@@ -114,4 +114,10 @@ class ActiveTimeView(APIView):
     def get(self, request, f_id):
         basic_stats = get_object_or_404(Basic_stats, f_id=f_id)
         serializer = ActiveTimeSerializer(basic_stats)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+class AllUserWordsView(APIView):
+    def get(self, request, f_id):
+        basic_stats = get_object_or_404(Basic_stats, f_id=f_id)
+        serializer = AllUserWordsSerializer(basic_stats)
         return Response(serializer.data, status=status.HTTP_200_OK)
