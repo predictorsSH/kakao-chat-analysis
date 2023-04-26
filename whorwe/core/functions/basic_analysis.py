@@ -17,12 +17,13 @@ def user_counts(data):
 def words_counts(user, data):
     if user == 'ALL':
         print('all user')
-        data = data['morpheme']
+        data = data[['morpheme', 'pos']]
         counts = {}
         print('counting words by all users...')
-        for d in data:
-            for word in d:
-                counts[word] = counts.get(word,0) + 1
+        for d_i, d in enumerate(data['morpheme']):
+            for w_i, word in enumerate(d):
+                if data.iloc[d_i]['pos'][w_i] == 'Noun':
+                    counts[word] = counts.get(word, 0) + 1
         return sorted(counts.items(),  key=lambda x: x[1], reverse=True)
 
     else:
