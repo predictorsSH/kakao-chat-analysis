@@ -29,7 +29,7 @@ class DataProcess():
             if ('ㅋ' not in (w[0])) and ('\n' != w[0]) & (len(w[0]) >= 3) \
                     & ('ㅇㅇ' not in (w[0])) & ('사진' != (w[0])) & ('이모티콘' != (w[0])):
                 all_words_counts.append(w) #순위 높은 단어 10개만 우선
-            if len(all_words_counts) >= 3:
+            if len(all_words_counts) >= 50:
                 break
         return all_words_counts
 
