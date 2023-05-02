@@ -63,11 +63,11 @@ step3. 웹 서비스 개발
 -분석 버튼 클릭<br>
 ![분석](project_results/images/분석.jpeg)
 
--분석 버튼 클릭<br>
+-가장 말 많은 사람 누구?<br>
 ![말많은사람](project_results/images/말많은사람.png)
 
--분석 버튼 클릭<br>
+-우리 대화의 피크 타임은 언제?<br>
 ![분석](project_results/images/시간대.png)
 
--그래서 하고샆은 말이 뭔데? 분석 결과 화면(x표시 사람이름)<br>
+-그래서 하고샆은 말이 뭔데? 분석 결과 화면<br>
 ![분석](project_results/images/단어구름.png)
