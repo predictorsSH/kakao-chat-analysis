@@ -2,3 +2,7 @@
 /media/
 /venv/
 /whorwe/core/functions/morph.csv
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
