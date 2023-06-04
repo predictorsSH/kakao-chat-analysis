@@ -13,16 +13,49 @@ def user_counts(data):
     return u_counts
 
 
-def words_counts(data):
+def words_counts(data, pos='Noun'):
 
     data = data[['morpheme', 'pos']]
-    counts = {}
-    print('counting words by all users...')
+    counts = dict()
+
     for d_i, d in enumerate(data['morpheme']):
         for w_i, word in enumerate(d):
-            if data.iloc[d_i]['pos'][w_i] == 'Noun':
+            if data.iloc[d_i]['pos'][w_i] == pos:
                 counts[word] = counts.get(word, 0) + 1
     return sorted(counts.items(),  key=lambda x: x[1], reverse=True)
+
+
+def all_user_word(data):
+    print('counting words by all users...')
+
+    all_words_counts = []
+    w_counts = words_counts(data, pos='Noun')
+    cnt = 0
+    len_2 = 0
+
+    for w in w_counts:
+        if cnt > 150:
+            break
+
+        elif len(w[0]) == 1:
+            continue
+
+        elif len_2 < 30:
+            if ('사진' != (w[0])) & ('이모티콘' != (w[0])):
+                all_words_counts.append(w)
+                cnt += 1
+                if len(w[0]) == 2:
+                    len_2 += 1
+
+        else:
+            if len(w[0]) == 2:
+                continue
+            else:
+                if ('사진' != (w[0])) & ('이모티콘' != (w[0])):
+                    all_words_counts.append(w)
+                    cnt += 1
+
+    return all_words_counts
 
 
 def active_time(data):
@@ -42,9 +75,10 @@ def active_time(data):
 
 
 if __name__ == '__main__':
-    from whorwe.core.functions.read_data import data_read
+    from utils.read_data import data_read
 
     FILE_PATH = '../../../media/uploads/KakaoTalk_Chat.csv'
-    # chat_data = data_read(FILE_PATH)
-    # u_counts = user_counts(chat_data)
+    chat_data = data_read(FILE_PATH)
+    u_counts = user_counts(chat_data)
+
     # act_time = active_time(chat_data)
