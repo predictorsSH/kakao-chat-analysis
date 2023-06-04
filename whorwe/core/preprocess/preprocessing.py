@@ -1,4 +1,3 @@
-
 from konlpy.tag import Okt
 from utils.read_data import data_read
 from whorwe.core.functions.basic_analysis import words_counts, active_time
