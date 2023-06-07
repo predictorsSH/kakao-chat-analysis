@@ -1,5 +1,4 @@
 from konlpy.tag import Okt
-from utils.read_data import data_read
 from whorwe.core.functions.basic_analysis import words_counts, active_time
 import pandas as pd
 
@@ -26,6 +25,7 @@ def remove_stopword(x):
 
 if __name__ == '__main__':
     FILE_PATH = '../../../media/uploads/KakaoTalk_Chat.csv'
+    from utils.read_data import data_read
     chat_data = data_read(FILE_PATH)
     chat_data = make_morpheme(chat_data)
     words = words_counts(chat_data)

@@ -6,6 +6,7 @@
       <sourceFolder url="file://$MODULE_DIR$/whorwe/core/functions" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/whorwe/core/preprocess" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/whorwe" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/whorwe/utils" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
