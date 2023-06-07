@@ -1,5 +1,5 @@
 from whorwe.core.preprocess.preprocessing import make_morpheme
-from utils.read_data import data_read
+from whorwe.utils.read_data import data_read
 from whorwe.core.functions.basic_analysis import active_time, user_counts, user, all_user_word
 
 
@@ -26,4 +26,4 @@ if __name__ == '__main__':
     FILE_PATH = '../../media/uploads/KakaoTalk_Chat.csv'
     DP = DataProcess(FILE_PATH)
     u_count, act_time, u_words_counts = DP.basic_analysis()
-    u_words_counts
+
