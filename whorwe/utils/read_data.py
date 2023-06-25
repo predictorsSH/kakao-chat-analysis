@@ -22,12 +22,9 @@ def txt_read(file_path):
 
         for line in f_data[4:]:
             line = line.strip()
-            print(line)
-
 
             try:
                 match = re.fullmatch(pattern, line)
-                print(match)
             except re.error as e:
                 print("정규식 오류로 스킵, e")
 
@@ -36,7 +33,7 @@ def txt_read(file_path):
                 date = [match.group(1), match.group(2), match.group(3)]
                 date = '-'.join(date)
 
-            else:
+            elif re.fullmatch(r'\[.+?] \[(오전|오후) \d{1,2}:\d{2}] .+?', line):
 
                 try:
                     user_start = line.find("[") + 1
@@ -47,11 +44,10 @@ def txt_read(file_path):
                     time_start = line.find("[", user_end + 1) + 1
                     time_end = line.find("]", time_start)
                     time = line[time_start:time_end]
-                    print(time)
                     period = time.split(' ')[0]
                     time = time.split(' ')[1]
 
-                    if period == '오후':
+                    if period == '오후' and time.split(':')[0] != '12':
                         time = [str(int(time.split(':')[0]) + 12), time.split(':')[1]]
                         time = ':'.join(time)
 
@@ -64,9 +60,8 @@ def txt_read(file_path):
 
                 except:
                     continue
-
             chat_data.append({'Date': date + ' ' + time, 'User': user, 'Message': message})
-
+    chat_data = pd.json_normalize(chat_data)
     return chat_data
 
 
@@ -78,4 +73,3 @@ if __name__ == '__main__':
 
     FILE_PATH = '../../../media/uploads/chat.txt'
     txt_data = txt_read(FILE_PATH)
-

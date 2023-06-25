@@ -24,11 +24,16 @@ def remove_stopword(x):
 
 
 if __name__ == '__main__':
-    FILE_PATH = '../../../media/uploads/KakaoTalk_Chat.csv'
-    from utils.read_data import data_read
-    chat_data = data_read(FILE_PATH)
+    FILE_PATH = '../../../media/uploads/chat.txt'
+    from utils.read_data import txt_read
+    chat_data = txt_read(FILE_PATH)
+    chat_data.to_csv('check.csv', index=False)
     chat_data = make_morpheme(chat_data)
-    words = words_counts(chat_data)
-    active = active_time(chat_data)
-    chat_data.to_csv('morph.csv', index=False)
     print('done')
+    words = words_counts(chat_data)
+    print('done')
+    active = active_time(chat_data)
+    print('done')
+
+    # chat_data.to_csv('morph.csv', index=False)
+    # print('done')
